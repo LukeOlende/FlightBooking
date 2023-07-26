@@ -1,0 +1,3 @@
+Admin Details
+Email -> admin@localhost.com
+Password -> Admin@localh0st
