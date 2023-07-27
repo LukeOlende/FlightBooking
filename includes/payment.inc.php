@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 use PHPMailer\PHPMailer\PHPMailer;
+
 if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
     require '../helpers/init_conn_db.php';  
     $flight_id = $_SESSION['flight_id'];
@@ -75,10 +77,10 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                         }
                     }                    
                     if($class === 'B') {
-                        $seats = $row['bus_seats'];                    
-                        $seats = $seats - 1;
+                        $seats = $row['bus_seat'];                    
+                        $seats = $seats - 1;        
                         $stmt = mysqli_stmt_init($conn);
-                        $sql = "UPDATE Flight SET last_bus_seat=?, bus_seats=?
+                        $sql = "UPDATE Flight SET last_bus_seat=?, bus_seat=?
                             WHERE flight_id=?";
                         $temp='/';
                         if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -92,7 +94,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                         $seats = $row['seats'];
                         $seats = $seats - 1;
                         $stmt = mysqli_stmt_init($conn);
-                        $sql = 'UPDATE flight SET last_seat=?, seats=?
+                        $sql = 'UPDATE Flight SET last_seat=?, Seats=?
                             WHERE flight_id=?';
                         if(!mysqli_stmt_prepare($stmt,$sql)) {
                             header('Location: ../payment.php?error=sqlerror');
@@ -127,7 +129,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
         if($type === 'round' && $flag === true) {
             $flag = false;
             for($i=$pass_id;$i<=$passengers+$pass_id;$i++) {
-                $sql = 'SELECT * FROM flight WHERE source=? AND destination=? AND
+                $sql = 'SELECT * FROM Flight WHERE source=? AND Destination=? AND
                     DATE(departure)=?';
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -177,10 +179,10 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                             }
                         }                    
                         if($class === 'B') {
-                            $seats = $row['bus_seats'];                    
+                            $seats = $row['bus_seat'];                    
                             $seats = $seats - 1;
                             $stmt = mysqli_stmt_init($conn);
-                            $sql = "UPDATE flight SET last_bus_seat=?, bus_seats=?
+                            $sql = "UPDATE Flight SET last_bus_seat=?, bus_seats=?
                                 WHERE flight_id=?";
                             $temp='/';
                             if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -194,7 +196,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                             $seats = $row['seats'];
                             $seats = $seats - 1;
                             $stmt = mysqli_stmt_init($conn);
-                            $sql = 'UPDATE flight SET last_seat=?, eats=?
+                            $sql = 'UPDATE Flight SET last_seat=?, Seats=?
                                 WHERE flight_id=?';
                             if(!mysqli_stmt_prepare($stmt,$sql)) {
                                 header('Location: ../payment.php?error=sqlerror');
