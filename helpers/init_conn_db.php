@@ -2,7 +2,7 @@
 $servername = "localhost";
 $db_username = "root";
 $db_password = "";
-$db_name = "flight-booking";
+$db_name = "airline_booking";
 
 $conn = mysqli_connect($servername, $db_username, $db_password,$db_name);
 
