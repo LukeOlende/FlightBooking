@@ -3,7 +3,7 @@
         <img src="images/plane-ticket.png" height="55px" width="55px" alt=""> Airline Booking System</h5>
     </em>
     <div class="text-light text-center">
-        &copy; - Designed & Developed by Luke Olende <?php echo date('Y')?> <br><br>
+        &copy; - Designed & Developed by Luke Olende, Philip Ochieng, <br> Aaron Omondi <br> <?php echo date('Y')?> <br><br>
     </div>
 
     <script

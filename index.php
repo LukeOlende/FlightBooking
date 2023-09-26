@@ -3,204 +3,68 @@
 	subview('header.php'); 
     require 'helpers/init_conn_db.php';                      
 ?> 	
-	<style>
-        button{
-            font-family: 'Montserrat', sans-serif;
-        }
-        .card-header{
-            font-weight: bold;
-            font-size: 20px;
-            justify-content: space-between;
-        }
-        .form-select:focus{
-            outline: none !important;
-        }
-        a{
-            text-decoration: none;
-        }
-        .intro{width:100%;background:#fff;z-index:1}
-        .intro-container{width:100%;border-bottom:solid 2px #e4e6e8;padding:65px 0;}
-        .intro_icon{width:70px;height:70px}
-        .intro_icon img{max-width:100%}
-    </style>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+    .carousel-item {
+        height: 350px;
+    }
+</style>
 
-    <?php
-        if(isset($_GET['error'])) {
-            if($_GET['error'] === 'sameval') {
-                echo '<script>alert("Select different value for departure city and arrival city")</script>';
-            } else if($_GET['error'] === 'seldep') {
-                    echo '<script>alert("Select Departure city")</script>';
-            } else if($_GET['error'] === 'selarr') {
-                echo"<script>alert('Select Arrival city')</script>";
-            }
-        }
-    ?> 
-
-    <section class="container-fluid ">
-        <div class="">
-            <h1 class="text-center text-light fw-bold mt-5" style="font-size: 45px;">
-                <img src="images/airplane.png" alt="" height="110px" width="110px">
-                Airline Flight Booking</h1>
+    <section>
+        <div class="container text-center" >
+            <img src="images/KQ.png" width="100px" alt="">
+            <h1 class="d-inline" style="font-size: 45px; font-weight: 800;">Online Booking System</h1> 
         </div>
-        <div class="card col-md-7 mx-auto mt-3 mb-3 border-0 pb-3">
-            <div class="card-header text-bg-secondary p-2">
-                <ul class="nav nav-tabs card-header-tabs justify-content-center" data-bs-tabs="tabs">
-                    <li class="nav-item text-uppercase me-5">
-                        <a href="#round-trip" class="nav-link active text-dark" data-bs-toggle="tab">Round Trip</a>
-                    </li>
-                    <li class="nav-item text-uppercase ms-5">
-                        <a href="#oneway" class="nav-link text-dark" data-bs-toggle="tab">Oneway</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body text-bg-light">
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="round-trip">
-                        <form action="book-flight.php" method="post">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="hidden" name="type" value="round">
-                                    <label class="fs-5 fw-bold" for="from">From:</label>
-                                        <?php 
-                                            $sql = 'SELECT * FROM cities ';
-                                            $stmt = mysqli_stmt_init($conn);
-                                            mysqli_stmt_prepare($stmt,$sql);         
-                                            mysqli_stmt_execute($stmt);          
-                                            $result = mysqli_stmt_get_result($stmt);
-                                            echo '<select class="form-select border-dark shadow-none" name="dep_city" id="w3_country1">
-                                            <option value="0" selected disabled >Depature</option>';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo '<option value='. $row['city']  .'>'. 
-                                                    $row['city'] .'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                </div>
-                                <div class="col">
-                                    <label class="fs-5 fw-bold" for="from">To:</label>
-                                        <?php 
-                                            $sql = 'SELECT * FROM cities ';
-                                            $stmt = mysqli_stmt_init($conn);
-                                            mysqli_stmt_prepare($stmt,$sql);         
-                                            mysqli_stmt_execute($stmt);          
-                                            $result = mysqli_stmt_get_result($stmt);
-                                            echo '<select class="form-select border-dark shadow-none" name="arr_city" id="w3_country1">
-                                            <option value="0" selected disabled >Arrival</option>';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo '<option value='. $row['city']  .'>'. 
-                                                    $row['city'] .'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-3">
-                                    <label for="depart" class="fs-5 fw-bold">Depart:</label>
-                                    <input type="date" name="dep_date" class="form-control border-dark shadow-none"
-                                    onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label for="return" class="fs-5 fw-bold">Return:</label>
-                                    <input type="date" name="ret_date" class="form-control border-dark shadow-none" 
-                                    onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required>
-                                </div>
-                                <div class="col">
-                                    <label class="fs-5 fw-bold" for="class">Class:</label>
-                                    <select class="form-select border-dark shadow-none" id="w3_country1"
-                                    name="f_class" onchange="change_country(this.value)" required>
-                                        <option value="E">Economy</option>
-                                        <option value="B">Business</option>
-                                        <option value="F">First</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-3 mt-2">
-                                    <label for="passengers" class="fs-5 fw-bold">Passenger(s):</label>
-                                    <input type="number" name="passengers"  id="passengers" class="form-control border-dark shadow-none" required>
-                                </div>
-                                <div class="col mt-4 pt-2">
-                                    <button type="submit" name="search_btn" class="btn btn-success p-2 float-end">Search Flights</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="oneway">
-                        <form action="book-flight.php" method="post">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="hidden" name="type" value="one">
-                                    <label class="fs-5 fw-bold" for="from">From:</label>
-                                        <?php 
-                                            $sql = 'SELECT * FROM cities ';
-                                            $stmt = mysqli_stmt_init($conn);
-                                            mysqli_stmt_prepare($stmt,$sql);         
-                                            mysqli_stmt_execute($stmt);          
-                                            $result = mysqli_stmt_get_result($stmt);
-                                            echo '<select class="form-select border-dark shadow-none" name="dep_city" id="w3_country1">
-                                            <option value="0" selected disabled >Depature</option>';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo '<option value='. $row['city']  .'>'. 
-                                                    $row['city'] .'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                </div>
-                                <div class="col">
-                                    <label class="fs-5 fw-bold" for="from">To:</label>
-                                            <?php 
-                                            $sql = 'SELECT * FROM cities ';
-                                            $stmt = mysqli_stmt_init($conn);
-                                            mysqli_stmt_prepare($stmt,$sql);         
-                                            mysqli_stmt_execute($stmt);          
-                                            $result = mysqli_stmt_get_result($stmt);
-                                            echo '<select class="form-select border-dark shadow-none" name="arr_city" id="w3_country1">
-                                            <option value="0" selected disabled >Arrival</option>';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo '<option value='. $row['city']  .'>'. 
-                                                    $row['city'] .'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-4">
-                                    <label for="depart" class="fs-5 fw-bold">Depart:</label>
-                                    <input type="date" name="dep_date" class="form-control border-dark shadow-none"
-                                    onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required>
-                                </div>
-                                <div class="col-sm-2"> </div>
-                                <div class="col">
-                                    <label class="fs-5 fw-bold" for="class">Class:</label>
-                                    <select class="form-select border-dark shadow-none" id="w3_country1"
-                                    name="f_class" onchange="change_country(this.value)" required>
-                                        <option value="E">Economy</option>
-                                        <option value="B">Business</option>
-                                        <option value="F">First</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-3 mt-2">
-                                    <label for="passengers" class="fs-5 fw-bold">Passenger(s):</label>
-                                    <input type="number" name="passengers"  id="passengers" class="form-control border-dark shadow-none" required>
-                                </div>
-                                <div class="col mt-4 pt-2">
-                                    <button type="submit" name="search_btn" class="btn btn-success p-2 float-end">Search Flights</button>
-                                </div>
-                            </div>
-                        </form>
+
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/airline-loyalty.jpg" class="d-block w-100" alt="..." >
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="text-warning fw-bold">Kenya Airways Rewards</h3>
+                        <p class="fw-bold text-light">Signup for the Kenya Airways Loyalty Program <br> and Earn Points With Each Trip</p>
                     </div>
                 </div>
-              
+                <div class="carousel-item">
+                    <img src="images/seats.jpg" class="d-block w-100" alt="..." >
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="text-warning fw-bold">Seats</h3>
+                        <p class="fw-bold">Extra Legroom, Extra Space, Extra Easy On All <br> Classes From Economy To Executive </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/transfer-aeroporti.jpg" class="d-block w-100" alt="..." >
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="text-warning fw-bold">Airport Transfer</h3>
+                        <p class="fw-bold text-capitalize">let us know where you are arriving or where you are leaving from, <br> and we will arrange your transfer to or from the hotel! </p>
+                    </div>
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
 
     <section>
-        <div class="container-fluid p-2" style="background: whitesmoke;margin-top:150px;">
+        <div class="container-fluid p-5" style="background: whitesmoke;margin-top: 150px;">
             <div class="intro">
                 <div class="container">
                     <div class="row">
@@ -258,4 +122,3 @@
     <footer class="mt-5">
         <?php subview('footer.php'); ?>
     </footer>
-

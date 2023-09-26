@@ -3,6 +3,14 @@
 require 'helpers/init_conn_db.php';                      
 ?> 	
 <style>
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+    }
     h2{
         color: #424242;
         font-size: 35px !important;

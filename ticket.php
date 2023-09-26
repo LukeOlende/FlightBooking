@@ -1,6 +1,13 @@
 <?php include_once 'helpers/helper.php'; ?>
 <?php subview('header.php'); ?>
 <style>
+body{
+    background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+}
 h2.brand {font-size: 27px !important;}
 p.head {
     text-transform: uppercase;
@@ -82,7 +89,7 @@ h1 {
     
     ?>     
     <div class="container mb-5"> 
-    <h1 class="text-center text-light mt-4 mb-4">TICKETS</h1>
+    <h1 class="text-center text-dark mt-4 mb-4">TICKETS</h1>
 
       <?php 
       $stmt = mysqli_stmt_init($conn);
@@ -187,7 +194,7 @@ h1 {
                                 </div>                
                             </div>                    
                         </div>
-                        <div class="col-3 pl-0" style="background-color:#376b8d !important;
+                        <div class="col-3 pl-0" style="background-color: red;
                             padding:20px; border-top-right-radius: 25px; border-bottom-right-radius: 25px;">
                             <div class="row">  
                                 <div class="col">                                    

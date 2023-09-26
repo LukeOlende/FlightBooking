@@ -4,6 +4,14 @@
     require 'helpers/init_conn_db.php';                      
 ?> 
 <style>
+body{
+    /* background: linear-gradient(to left, #2c3e50, #bdc3c7); */
+    background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+}
 div.out {
     padding: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
@@ -24,7 +32,7 @@ h1 {
 </style>
 <main>
     <div class="container">
-    <h1 class="text-center text-light mt-4 mb-4">FLIGHT STATUS</h1>
+    <h1 class="text-center text-dark mt-4 mb-4">FLIGHT STATUS</h1>
     <?php 
     $stmt_t = mysqli_stmt_init($conn);
     $sql_t = 'SELECT * FROM ticket WHERE user_id=?';

@@ -1,6 +1,14 @@
 <?php include_once 'helpers/helper.php'; ?>
 <?php subview('header.php'); ?>
 <style>
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+    }
     .main-col {
         background-color: whitesmoke;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   

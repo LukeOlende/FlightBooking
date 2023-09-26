@@ -24,12 +24,16 @@
         body{
         font-family: 'Montserrat', sans-serif;
         background: #2c3e50;
-      }
+        }
+        .nav-link{
+          font-weight: 700;
+          font-size: 16px;
+        }
     </style>
 
 </head>
 <body>
-<nav class="navbar mb-3 navbar-expand-lg bg-secondary bg-transparent">
+<nav class="navbar mb-3 navbar-expand-lg bg-transparent">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,32 +46,36 @@
         <ul class="navbar-nav ms-2">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="index.php">
-              <h5 class="text-light">Home</h5>
+              Home
             </a>
           </li>
 
           <!--Links Appear Once User Logs In -->
           <?php if(isset($_SESSION['userId'])) { ?>
-            <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="booking-page.php">
+              Book Flight
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="my_flights.php">
-              <h5 class="text-light">My Flights</h5>
+              My Flights
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="ticket.php">
-              <h5 class="text-light">Tickets</h5>
+              Tickets
             </a>
           </li>
           <?php } ?>
-
           <li class="nav-item">
             <a class="nav-link" href="feedback.php">
-              <h5 class="text-light">Feedback</h5>
+              Feedback
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <h5 class="text-light">About Us</h5>
+              About Us
             </a>
           </li>
         <?php 
@@ -75,13 +83,13 @@
             echo '
             <div class="d-flex" style="margin-left: 400px;">
               <li class="nav-item d-flex">
-                <span class="navbar-brand mb-0 text-light">
-                  <i class="me-1 ms-1 fa fa-user text-light"></i>'.$_SESSION['userUid'].'
+                <span class="navbar-brand text-dark fw-bold">
+                  <i class="fa fa-user text-dark"></i>'.$_SESSION['userUid'].'
                 </span>
               </li>
               <li class="nav-item">
                 <form action="includes/logout.inc.php" class="d-flex" method="POST">
-                  <button class="btn btn-secondary ms-3" type="submit">
+                  <button class="btn btn-secondary fw-bold ms-3" type="submit">
                     Logout
                   </button>             
                 </form>
@@ -91,8 +99,8 @@
             ';
           } else {
             echo '
-            <div class="dropdown d-flex" style="margin-left:700px">
-              <button class="btn btn-secondary dropdown-toggle" type="button" 
+            <div class="dropdown d-flex" style="margin-left:750px">
+              <button class="btn btn-secondary dropdown-toggle login-btn" type="button" 
               data-bs-toggle="dropdown">
               Log in</button>
                 <ul class="dropdown-menu w-75">

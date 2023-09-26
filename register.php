@@ -18,9 +18,15 @@ if(isset($_GET['error'])) {
 ?>
 
 <style>
-    label{
-        font-weight: 600;
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
     }
+    label{font-weight: 600;}
 </style>
 
     <main>

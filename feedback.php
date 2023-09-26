@@ -1,17 +1,21 @@
 <?php include_once 'helpers/helper.php'; ?>
 <?php subview('header.php');    ?>
 <style>
-      body{
-      font-family: 'Montserrat', sans-serif;
-      background: #2c3e50;
-      }
-      h5{
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+    h5{
         color: whitesmoke;
         font-size: 20px;
-      }
-      label{
+    }
+    label{
         font-weight: bold;
-      }
+    }
     </style>
 
     <?php
@@ -29,7 +33,7 @@
     <!-- Main Section -->
     <main>
         <div class="container mb-4">
-            <h2 class="text-light text-center text-uppercase">
+            <h2 class="text-dark text-center text-uppercase">
                 <img src="images/feedback.png" width="65px" alt=""> Feedback</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6 bg-light p-3 rounded-3">

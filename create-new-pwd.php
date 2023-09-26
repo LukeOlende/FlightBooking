@@ -3,18 +3,18 @@
 
 <link rel="stylesheet" href="assets/css/login.css">
 <style>
-@font-face {
-  font-family: 'product sans';
-  src: url('assets/css/Product Sans Bold.ttf');
-}
 h1{
-   font-family :'product sans' !important;
 	font-size:48px !important;
 	margin-top:20px;
 	text-align:center;
 }
-body {
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('images/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-position: center;
 }
 .login-form {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  

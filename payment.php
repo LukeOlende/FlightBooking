@@ -1,6 +1,14 @@
 <?php include_once 'helpers/helper.php'; ?>
 <?php subview('header.php'); ?>
 <style>
+  body{
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('images/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-position: center;
+  }
   input {
     border :0px !important;
     border-bottom: 2px solid #424242 !important;

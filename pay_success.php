@@ -6,6 +6,14 @@
         padding: 0;
         box-sizing: border-box;
     }
+    body{
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        background-position: center;
+    }
     .container{
         background-color: whitesmoke;
         display: flex;

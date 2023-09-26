@@ -25,7 +25,7 @@ if(isset($_POST['login_btn'])) {
                 $_SESSION['userMail'] = $row['email'];
                 setcookie('Uname', $email_id, time() + (86400 * 30), "/");
                 setcookie('Upwd', $password, time() + (86400 * 30), "/");                                
-                header('Location: ../index.php?login=success');
+                header('Location: ../booking-page.php?login=success');
                 exit();                  
             } else {
                 header('Location: ../login.php?error=invalidcred');
