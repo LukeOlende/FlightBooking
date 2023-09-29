@@ -74,8 +74,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              About Us
+            <a class="nav-link" href="help.php">
+              Help Desk
             </a>
           </li>
         <?php 
